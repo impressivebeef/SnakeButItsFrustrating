@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SnakeGameMAUI.MainPage">
+
+    <Grid>
+        <Border Padding="0" HeightRequest="403" WidthRequest="403" HorizontalOptions="Center" VerticalOptions="Center">
+            <GraphicsView x:Name="GameCanvas" HeightRequest="400" WidthRequest="400" BackgroundColor="Black"/>
+        </Border>
+        <Label x:Name="ScoreLabel" Text="Score: 0" TextColor ="White" HorizontalOptions="Start" VerticalOptions="Start"/>
+        <Label x:Name="HungerLabel" Text="Score: 0" TextColor ="White" HorizontalOptions="Center" VerticalOptions="Start"/>
+    </Grid>
+</ContentPage>
