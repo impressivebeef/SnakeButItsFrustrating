@@ -239,7 +239,7 @@ namespace SnakeGameMAUI.Controllers
                     break;
 
                 default:
-                    throw new Exception("Invalid key: " + input);
+                    throw new ArgumentException("Invalid key: " + input);
             }
         }
 
