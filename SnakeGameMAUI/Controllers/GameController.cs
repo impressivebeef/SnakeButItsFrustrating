@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Graphics;
+﻿using System.Diagnostics;
+using Microsoft.Maui.Graphics;
 using SnakeGame.Views;
 using SnakeGameMAUI.Views;
 
@@ -91,13 +92,12 @@ namespace SnakeGameMAUI.Controllers
 
         private async Task RunGameLoop(CancellationToken cancellationToken)
         {
-            DateTime nextTick;
+            Stopwatch timer = new Stopwatch();
             _IsRunning = true;
 
             while (_IsRunning && !cancellationToken.IsCancellationRequested)
             {
-                nextTick = DateTime.Now;
-                nextTick = nextTick.AddMilliseconds(_GameSpeed);
+                timer.Restart();
 
                 // Run the game
                 ProcessGameTick();
@@ -105,7 +105,9 @@ namespace SnakeGameMAUI.Controllers
                 _tickCounter++;
 
                 // Calculate the delay from running the game and wait the remaining time
-                var delay = (nextTick - DateTime.Now);
+                var delay = TimeSpan.FromMilliseconds(_GameSpeed) - timer.Elapsed;
+                timer.Stop();
+
                 System.Diagnostics.Debug.WriteLine($"Delay: {delay.ToString()}");
 
                 // Await the delay time until next tick
