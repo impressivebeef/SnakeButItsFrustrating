@@ -3,7 +3,7 @@ using SnakeGameMAUI;
 
 namespace SnakeGame.Views
 {
-    public class FoodView : SnakeGameMAUI.Views.View
+    public class FoodView : SnakeGameMAUI.Views.View<FoodModel>
     {
         private Point _FoodPosition;
 
@@ -11,7 +11,7 @@ namespace SnakeGame.Views
        
         public override void Render() 
         {
-            this._FoodPosition = ((FoodModel)this._model).GetFoodPosition();
+            this._FoodPosition = this._model.GetFoodPosition();
             this._gameCanvas.Invalidate();
         }
 

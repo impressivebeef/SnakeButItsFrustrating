@@ -70,9 +70,9 @@ namespace SnakeGameMAUI.Controllers
             // PROBLEM: Graphicsview doesnt support having multiple Drawable objects attached to GameCanvas 
             // SOLUTION => Combine all views in 1 composite object and add the resulting object to assign to GameCanvas
             CompositeDrawable compositeDrawable = new CompositeDrawable();
-            compositeDrawable.AddDrawable((SnakeView)_SnakeController.GetView());
-            compositeDrawable.AddDrawable((FoodView)_FoodController.GetView());
-            compositeDrawable.AddDrawable((ArtilleryView)_ArtilleryController.GetView());
+            compositeDrawable.AddDrawable(this._SnakeController.GetView());
+            compositeDrawable.AddDrawable(this._FoodController.GetView());
+            compositeDrawable.AddDrawable(this._ArtilleryController.GetView());
             GameCanvas.Drawable = compositeDrawable;
 
             // Run game loop

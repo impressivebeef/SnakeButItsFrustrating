@@ -4,7 +4,7 @@ using SnakeGame.Views;
 
 namespace SnakeGameMAUI.Controllers
 {
-    public class SnakeController : Controller
+    public class SnakeController : Controller<SnakeModel,SnakeView>
     {
         public event Action DiedFromHunger; 
 
@@ -13,7 +13,7 @@ namespace SnakeGameMAUI.Controllers
             this._model = new SnakeModel(startPosition);
             this._view = new SnakeView(gameCanvas, (SnakeModel)this._model);
 
-            ((SnakeModel)this._model).DiedFromHunger += () => { DiedFromHunger?.Invoke(); }; 
+            this._model.DiedFromHunger += () => { DiedFromHunger?.Invoke(); }; 
         }
 
         public bool Update(Point newPoint, bool foodEaten, HashSet<ArtilleryPosition> artilleryPositions)
@@ -31,10 +31,10 @@ namespace SnakeGameMAUI.Controllers
             return true;
         }
 
-        public HashSet<Point> GetBody() { return ((SnakeModel)this._model).GetPoints(); }
-        public Point GetSnakeHead() { return ((SnakeModel)this._model).GetSnakeHead(); }
-        public void ClearSnake() { ((SnakeView)this._view).ClearSnake(); }
-        public int GetHunger() { return ((SnakeModel)this._model).GetHunger(); }
-        public int GetMaxHunger() { return ((SnakeModel)this._model).GetMaxHunger(); }
+        public HashSet<Point> GetBody() { return this._model.GetPoints(); }
+        public Point GetSnakeHead() { return this._model.GetSnakeHead(); }
+        public void ClearSnake() { this._view.ClearSnake(); }
+        public int GetHunger() { return this._model.GetHunger(); }
+        public int GetMaxHunger() { return this._model.GetMaxHunger(); }
     }
 }

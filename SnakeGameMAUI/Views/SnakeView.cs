@@ -4,7 +4,7 @@ using SnakeGameMAUI.Views;
 
 namespace SnakeGame.Views
 {
-    public class SnakeView : SnakeGameMAUI.Views.View
+    public class SnakeView : SnakeGameMAUI.Views.View<SnakeModel>
     {
         private Queue<Point> _SnakeSegments;
         public SnakeView(GraphicsView gameCanvas, SnakeModel snakeModel) : base(gameCanvas, snakeModel) 
@@ -13,7 +13,7 @@ namespace SnakeGame.Views
         }
 
         public override void Render() {
-            this._SnakeSegments = ((SnakeModel)this._model).GetBody();
+            this._SnakeSegments = this._model.GetBody();
             this._gameCanvas.Invalidate();
         }
 

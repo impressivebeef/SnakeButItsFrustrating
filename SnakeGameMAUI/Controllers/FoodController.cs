@@ -4,7 +4,7 @@ using SnakeGame.Views;
 
 namespace SnakeGameMAUI.Controllers
 {
-    public class FoodController : Controller
+    public class FoodController : Controller<FoodModel,FoodView>
     {
 
         public FoodController( GraphicsView gameCanvas )
@@ -15,17 +15,17 @@ namespace SnakeGameMAUI.Controllers
 
         public void GenerateNewFoodPosition(HashSet<Point> invalidPositions)
         {
-            ((FoodModel)this._model).PlaceFood(invalidPositions);
+            this._model.PlaceFood(invalidPositions);
             this._view.Render();
         }
 
         public void MoveFood(HashSet<Point> invalidPositions) 
         { 
-            ((FoodModel)this._model).MoveFood(invalidPositions);
+            this._model.MoveFood(invalidPositions);
             this._view.Render();
         }
 
-        public bool IsColliding(Point position) { return ((FoodModel)this._model).IsColliding(position); }
+        public bool IsColliding(Point position) { return this._model.IsColliding(position); }
 
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SnakeGameMAUI.Views
 {
-    public class ArtilleryView : View
+    public class ArtilleryView : View<ArtilleryModel>
     {
         public ArtilleryView(GraphicsView gameCanvas, ArtilleryModel artilleryModel) : base(gameCanvas, artilleryModel) { }
 
@@ -13,7 +13,7 @@ namespace SnakeGameMAUI.Views
 
         public override void Draw(ICanvas canvas, RectF rect)
         {
-            HashSet<ArtilleryPosition> positions = ((ArtilleryModel) this._model).GetPositions();
+            HashSet<ArtilleryPosition> positions = this._model.GetPositions();
 
             foreach (ArtilleryPosition position in positions)
             {

@@ -7,11 +7,11 @@ using SnakeGameMAUI.Models;
 
 namespace SnakeGameMAUI.Controllers
 {
-    public abstract class Controller
+    public abstract class Controller<TModel,TView>
     {
-        protected Model _model;
-        protected SnakeGameMAUI.Views.View _view; 
+        protected TModel _model;
+        protected TView _view; 
     
-        public SnakeGameMAUI.Views.View GetView() { return this._view; }
+        public TView GetView() { return this._view; }
     }
 }

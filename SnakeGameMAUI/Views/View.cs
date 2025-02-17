@@ -2,13 +2,13 @@
 
 namespace SnakeGameMAUI.Views
 {
-    public abstract class View : IDrawable
+    public abstract class View<TModel> : IDrawable
     {
 
         protected GraphicsView _gameCanvas;
-        protected Model _model;
+        protected TModel _model;
 
-        public View(GraphicsView gameCanvas, Model model)
+        public View(GraphicsView gameCanvas, TModel model)
         {
             this._gameCanvas = gameCanvas;
             this._model = model;
