@@ -9,7 +9,7 @@ namespace SnakeGameMAUI.Controllers
         public ArtilleryController(GraphicsView gameCanvas)
         {
             this._model = new ArtilleryModel();
-            this._view = new ArtilleryView(gameCanvas, (ArtilleryModel)this._model);
+            this._view = new ArtilleryView(gameCanvas, this._model);
         }
 
         public void UpdateArtillery()

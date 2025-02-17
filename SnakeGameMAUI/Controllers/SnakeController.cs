@@ -11,7 +11,7 @@ namespace SnakeGameMAUI.Controllers
         public SnakeController(GraphicsView gameCanvas, Point startPosition)
         {
             this._model = new SnakeModel(startPosition);
-            this._view = new SnakeView(gameCanvas, (SnakeModel)this._model);
+            this._view = new SnakeView(gameCanvas, this._model);
 
             this._model.DiedFromHunger += () => { DiedFromHunger?.Invoke(); }; 
         }

@@ -10,7 +10,7 @@ namespace SnakeGameMAUI.Controllers
         public FoodController( GraphicsView gameCanvas )
         { 
             this._model = new FoodModel();
-            this._view = new FoodView(gameCanvas, (FoodModel)this._model);
+            this._view = new FoodView(gameCanvas, this._model);
         }
 
         public void GenerateNewFoodPosition(HashSet<Point> invalidPositions)
