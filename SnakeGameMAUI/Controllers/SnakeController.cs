@@ -16,14 +16,14 @@ namespace SnakeGameMAUI.Controllers
             ((SnakeModel)this._model).DiedFromHunger += () => { DiedFromHunger?.Invoke(); }; 
         }
 
-        public bool Update(Point newPoint, ref bool foodEaten, HashSet<ArtilleryPosition> artilleryPositions)
+        public bool Update(Point newPoint, bool foodEaten, HashSet<ArtilleryPosition> artilleryPositions)
         {
             if (((SnakeModel)this._model).IsColliding(newPoint, artilleryPositions)) { return false; }
 
             ((SnakeModel)this._model).CalculateDamage(artilleryPositions);
 
             // Move Snake
-            ((SnakeModel)this._model).UpdateBody(newPoint, ref foodEaten);
+            ((SnakeModel)this._model).UpdateBody(newPoint, foodEaten);
 
             // Rerender Snake
             this._view.Render();

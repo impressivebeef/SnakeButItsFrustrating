@@ -83,7 +83,7 @@ namespace SnakeGame.Models
             return this._snakeBody.Last(); 
         }
 
-        public void UpdateBody(Point newPosition,ref bool foodEaten)
+        public void UpdateBody(Point newPosition,bool foodEaten)
         {
             this._snakeBody.Enqueue(newPosition);
             this._snakePoints.Add(newPosition);
@@ -98,9 +98,7 @@ namespace SnakeGame.Models
             }
             else 
             {
-                this.SetHungerOnFoodEaten();
-
-                foodEaten = false; 
+                this.SetHungerOnFoodEaten(); 
             }
         }
 

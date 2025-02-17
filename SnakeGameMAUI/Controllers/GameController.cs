@@ -17,7 +17,6 @@ namespace SnakeGameMAUI.Controllers
         private FoodController _FoodController;
         private SnakeController _SnakeController;
         private ArtilleryController _ArtilleryController;
-        private bool _FoodEaten = false;
 
         public enum Direction { Left, Right, Up, Down };
         private Direction _CurrentDirection = Direction.Right;
@@ -130,17 +129,18 @@ namespace SnakeGameMAUI.Controllers
             // Calculate next position
             Point nextPosition = CalculateNextPosition(_SnakeController.GetSnakeHead());
 
+            // Check if snake head is colliding with food
+            bool foodEaten = _FoodController.IsColliding(nextPosition);
+
             // Update the snakebody and check if there are collisions
             // If colliding => generate game-over screen
-            if (!_SnakeController.Update(nextPosition, ref _FoodEaten, _ArtilleryController.GetArtilleryPositions()))
+            if (!_SnakeController.Update(nextPosition, foodEaten, _ArtilleryController.GetArtilleryPositions()))
             {
                 this.CreateGameOverScreen();
             }
-            // Check if next position is colliding with Food object
             // If true => extend SnakeBody and generate new food position
-            if (_FoodController.IsColliding(nextPosition))
+            if (foodEaten)
             {
-                _FoodEaten = true;
                 System.Diagnostics.Debug.WriteLine("Eaten food");
                 _FoodController.GenerateNewFoodPosition(_SnakeController.GetBody());
                 this._Score++;
@@ -148,10 +148,6 @@ namespace SnakeGameMAUI.Controllers
                 int highscore = this._Score < this._HighScore ? this._HighScore : this._Score;
 
                 this.ScoreLabel.Text = $"Score: {this._Score} Highscore: {highscore}";
-            }
-            else
-            {
-                _FoodEaten = false;
             }
 
             if(this._tickCounter % 2 == 0)
