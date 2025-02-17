@@ -24,24 +24,15 @@ namespace SnakeGameMAUI.Views
                 }
                 else
                 {
-                    switch (position.Phase)
+                    canvas.FillColor = position.Phase switch
                     {
-                        case 11:
-                            canvas.FillColor = Colors.Red;
-                            break;
-                        case 12:
-                            canvas.FillColor = Colors.Orange;
-                            break;
-                        case 13:
-                            canvas.FillColor = Colors.Yellow;
-                            break;
-                        case 14:
-                            canvas.FillColor = Colors.Brown;
-                            break;
-                        case 15:
-                            canvas.FillColor = Colors.Black;
-                            break;
-                    }
+                        11 => Colors.Red,
+                        12 => Colors.Orange,
+                        13 => Colors.Yellow,
+                        14 => Colors.Brown,
+                        15 => Colors.Black,
+                        _  => Colors.Transparent
+                    };
                 }
                 canvas.FillRectangle((float) position.X, (float) position.Y, UIConstants.CellSize, UIConstants.CellSize);
             }
