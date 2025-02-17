@@ -18,22 +18,18 @@ namespace SnakeGameMAUI.Controllers
 
         public bool Update(Point newPoint, bool foodEaten, HashSet<ArtilleryPosition> artilleryPositions)
         {
-            if (((SnakeModel)this._model).IsColliding(newPoint, artilleryPositions)) { return false; }
+            if (this._model.IsColliding(newPoint, artilleryPositions)) { return false; }
 
-            ((SnakeModel)this._model).CalculateDamage(artilleryPositions);
+            this._model.CalculateDamage(artilleryPositions);
 
             // Move Snake
-            ((SnakeModel)this._model).UpdateBody(newPoint, foodEaten);
-
-            // Rerender Snake
-            this._view.Render();
+            this._model.UpdateBody(newPoint, foodEaten);
 
             return true;
         }
 
         public HashSet<Point> GetBody() { return this._model.GetPoints(); }
         public Point GetSnakeHead() { return this._model.GetSnakeHead(); }
-        public void ClearSnake() { this._view.ClearSnake(); }
         public int GetHunger() { return this._model.GetHunger(); }
         public int GetMaxHunger() { return this._model.GetMaxHunger(); }
     }

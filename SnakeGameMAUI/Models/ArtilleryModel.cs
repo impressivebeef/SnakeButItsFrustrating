@@ -23,6 +23,8 @@
             ArtilleryPosition ArtilleryPosition = new ArtilleryPosition(x, y, 0, 0);
 
             this._positions.Add(ArtilleryPosition);
+
+            this.OnModelChanged();
         }
 
         public void UpdateArtillery() { 
@@ -69,6 +71,8 @@
 
             // remove all postions that exceed Phase > 15
             this._positions.RemoveWhere(position => position.Phase > 15);
+
+            this.OnModelChanged();
         }
 
         private Point[] GetAdjacentPositions(ArtilleryPosition artilleryPosition)

@@ -12,11 +12,12 @@ namespace SnakeGameMAUI.Views
         {
             this._gameCanvas = gameCanvas;
             this._model = model;
+            
+            // Subscribe to the model changed event in model, so that the view rerenders everytime the data in the model changes
+            this._model.ModelChanged += () => { gameCanvas.Invalidate(); };
         }
 
         abstract public void Draw(ICanvas canvas, RectF rect);
-
-        abstract public void Render();
 
     }
 }

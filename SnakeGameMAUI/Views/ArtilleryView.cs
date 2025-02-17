@@ -6,11 +6,6 @@ namespace SnakeGameMAUI.Views
     {
         public ArtilleryView(GraphicsView gameCanvas, ArtilleryModel artilleryModel) : base(gameCanvas, artilleryModel) { }
 
-        public override void Render()
-        {
-            this._gameCanvas.Invalidate();
-        }
-
         public override void Draw(ICanvas canvas, RectF rect)
         {
             HashSet<ArtilleryPosition> positions = this._model.GetPositions();

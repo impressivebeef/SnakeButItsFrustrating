@@ -85,9 +85,6 @@ namespace SnakeGameMAUI.Controllers
             // Cancel old gameloop
             _CancellationTokenSource.Cancel();
 
-            // Clear Canvas
-            this._SnakeController.ClearSnake();
-
             // Reinitialize Game
             InitializeGame();
         }

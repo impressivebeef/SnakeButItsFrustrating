@@ -100,6 +100,8 @@ namespace SnakeGame.Models
             {
                 this.SetHungerOnFoodEaten(); 
             }
+
+            this.OnModelChanged();
         }
 
         private void CheckDeathFromHunger()

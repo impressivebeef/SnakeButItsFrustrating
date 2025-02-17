@@ -6,26 +6,15 @@ namespace SnakeGame.Views
 {
     public class SnakeView : SnakeGameMAUI.Views.View<SnakeModel>
     {
-        private Queue<Point> _SnakeSegments;
-        public SnakeView(GraphicsView gameCanvas, SnakeModel snakeModel) : base(gameCanvas, snakeModel) 
-        {
-            this._SnakeSegments = new Queue<Point>();
-        }
-
-        public override void Render() {
-            this._SnakeSegments = this._model.GetBody();
-            this._gameCanvas.Invalidate();
-        }
-
-        public void ClearSnake() {
-            this._SnakeSegments.Clear();
-        }
+        public SnakeView(GraphicsView gameCanvas, SnakeModel snakeModel) : base(gameCanvas, snakeModel) {  }
 
         public override void Draw(ICanvas canvas, RectF rect) {
 
+            Queue<Point> snakeSegments = this._model.GetBody();
+
             // Draw snake
             canvas.FillColor = Colors.Green;
-            foreach (Point segment in this._SnakeSegments) 
+            foreach (Point segment in snakeSegments) 
             {
                 canvas.FillRectangle((float) segment.X, (float) segment.Y, UIConstants.CellSize, UIConstants.CellSize);
             }

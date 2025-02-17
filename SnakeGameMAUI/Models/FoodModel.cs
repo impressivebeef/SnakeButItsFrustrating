@@ -28,6 +28,8 @@ namespace SnakeGame.Models
             } while (invalidPositions.Contains(nextFoodPosition));
 
             this._FoodPosition = nextFoodPosition;
+
+            this.OnModelChanged();
         }
 
         public void MoveFood(HashSet<Point> invalidPositions)
@@ -81,6 +83,8 @@ namespace SnakeGame.Models
                                                nextFoodPosition.Y >= UIConstants.CanvasHeight);
 
             this._FoodPosition = nextFoodPosition;
+
+            this.OnModelChanged();
         }
         public bool IsColliding(Point position)
         {
