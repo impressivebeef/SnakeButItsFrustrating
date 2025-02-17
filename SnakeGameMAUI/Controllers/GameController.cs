@@ -59,7 +59,7 @@ namespace SnakeGameMAUI.Controllers
             this._HighScore = GetHighScore();
 
             //Initiate hungerbar
-            HungerLabel.Text = "Hunger: 100/100";
+            this.HungerLabel.Text = "Hunger: 100/100";
 
             // Set score to 0
             this._Score = 0;
@@ -74,17 +74,17 @@ namespace SnakeGameMAUI.Controllers
             compositeDrawable.AddDrawable(this._SnakeController.GetView());
             compositeDrawable.AddDrawable(this._FoodController.GetView());
             compositeDrawable.AddDrawable(this._ArtilleryController.GetView());
-            GameCanvas.Drawable = compositeDrawable;
+            this.GameCanvas.Drawable = compositeDrawable;
 
             // Run game loop
-            _ = RunGameLoop(_CancellationTokenSource.Token);
+            _ = RunGameLoop(this._CancellationTokenSource.Token);
         }
 
         private void RestartGame()
         {
 
             // Cancel old gameloop
-            _CancellationTokenSource.Cancel();
+            this._CancellationTokenSource.Cancel();
 
             // Reinitialize Game
             InitializeGame();
@@ -93,9 +93,9 @@ namespace SnakeGameMAUI.Controllers
         private async Task RunGameLoop(CancellationToken cancellationToken)
         {
             Stopwatch timer = new Stopwatch();
-            _IsRunning = true;
+            this._IsRunning = true;
 
-            while (_IsRunning && !cancellationToken.IsCancellationRequested)
+            while (this._IsRunning && !cancellationToken.IsCancellationRequested)
             {
                 timer.Restart();
 
@@ -105,8 +105,7 @@ namespace SnakeGameMAUI.Controllers
                 _tickCounter++;
 
                 // Calculate the delay from running the game and wait the remaining time
-                var delay = TimeSpan.FromMilliseconds(_GameSpeed) - timer.Elapsed;
-                timer.Stop();
+                TimeSpan delay = TimeSpan.FromMilliseconds(_GameSpeed) - timer.Elapsed;
 
                 System.Diagnostics.Debug.WriteLine($"Delay: {delay.ToString()}");
 
@@ -119,21 +118,21 @@ namespace SnakeGameMAUI.Controllers
         private void ProcessGameTick()
         {
             // Check if direction changed
-            if (_BufferedDirection != null)
+            if (this._BufferedDirection != null)
             {
-                _CurrentDirection = _BufferedDirection.Value;
-                _BufferedDirection = null;
+                this._CurrentDirection = _BufferedDirection.Value;
+                this._BufferedDirection = null;
             }
 
             // Calculate next position
-            Point nextPosition = CalculateNextPosition(_SnakeController.GetSnakeHead());
+            Point nextPosition = this.CalculateNextPosition(this._SnakeController.GetSnakeHead());
 
             // Check if snake head is colliding with food
-            bool foodEaten = _FoodController.IsColliding(nextPosition);
+            bool foodEaten = this._FoodController.IsColliding(nextPosition);
 
             // Update the snakebody and check if there are collisions
             // If colliding => generate game-over screen
-            if (!_SnakeController.Update(nextPosition, foodEaten, _ArtilleryController.GetArtilleryPositions()))
+            if (!this._SnakeController.Update(nextPosition, foodEaten, this._ArtilleryController.GetArtilleryPositions()))
             {
                 this.CreateGameOverScreen();
             }
@@ -141,7 +140,7 @@ namespace SnakeGameMAUI.Controllers
             if (foodEaten)
             {
                 System.Diagnostics.Debug.WriteLine("Eaten food");
-                _FoodController.GenerateNewFoodPosition(_SnakeController.GetBody());
+                this._FoodController.GenerateNewFoodPosition(this._SnakeController.GetBody());
                 this._Score++;
 
                 int highscore = this._Score < this._HighScore ? this._HighScore : this._Score;
@@ -151,24 +150,24 @@ namespace SnakeGameMAUI.Controllers
 
             if(this._tickCounter % 2 == 0)
             {
-                _FoodController.MoveFood(_SnakeController.GetBody());
+                this._FoodController.MoveFood(this._SnakeController.GetBody());
             }
             else if(this._tickCounter >= 6)
             {
-                _ArtilleryController.GenerateArtilleryPoint();
+                this._ArtilleryController.GenerateArtilleryPoint();
                 this._tickCounter = 0;
             }
 
             //Update hungerbar
             this.UpdateHungerLabel();
 
-            _ArtilleryController.UpdateArtillery();
+            this._ArtilleryController.UpdateArtillery();
 
         }
 
         private void CreateGameOverScreen()
         {
-            _IsRunning = false;
+            this._IsRunning = false;
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
@@ -184,7 +183,7 @@ namespace SnakeGameMAUI.Controllers
         {
             Point nextPosition = currentPosition;
 
-            switch (_CurrentDirection)
+            switch (this._CurrentDirection)
             {
                 case Direction.Up:
                     nextPosition.Y -= UIConstants.CellSize;
@@ -211,7 +210,7 @@ namespace SnakeGameMAUI.Controllers
             int hunger = this._SnakeController.GetHunger();
             int maxHunger = this._SnakeController.GetMaxHunger();
 
-            HungerLabel.Text = $"Hunger: {hunger}/{maxHunger}";
+            this.HungerLabel.Text = $"Hunger: {hunger}/{maxHunger}";
         }
 
         public void HandleInput(char input) {
@@ -225,19 +224,19 @@ namespace SnakeGameMAUI.Controllers
             {
 
                 case 'w':
-                    if (_CurrentDirection != Direction.Down) { _BufferedDirection = Direction.Up; }
+                    if (this._CurrentDirection != Direction.Down) { this._BufferedDirection = Direction.Up; }
                     break;
 
                 case 'a':
-                    if (_CurrentDirection != Direction.Right) { _BufferedDirection = Direction.Left; }
+                    if (this._CurrentDirection != Direction.Right) { this._BufferedDirection = Direction.Left; }
                     break;
 
                 case 's':
-                    if (_CurrentDirection != Direction.Up) { _BufferedDirection = Direction.Down; }
+                    if (this._CurrentDirection != Direction.Up) { this._BufferedDirection = Direction.Down; }
                     break;
 
                 case 'd':
-                    if (_CurrentDirection != Direction.Left) { _BufferedDirection = Direction.Right; }
+                    if (this._CurrentDirection != Direction.Left) { this._BufferedDirection = Direction.Right; }
                     break;
 
                 default:

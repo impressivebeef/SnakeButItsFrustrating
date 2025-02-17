@@ -6,7 +6,7 @@ namespace SnakeGame.Models
 {
     public class FoodModel : Model
     {
-        private Point _FoodPosition;
+        private Point _foodPosition;
  
         private Random _random;
         private Direction _oppositeDirection = Direction.Right;
@@ -27,7 +27,7 @@ namespace SnakeGame.Models
                 
             } while (invalidPositions.Contains(nextFoodPosition));
 
-            this._FoodPosition = nextFoodPosition;
+            this._foodPosition = nextFoodPosition;
 
             this.OnModelChanged();
         }
@@ -42,7 +42,7 @@ namespace SnakeGame.Models
             Point nextFoodPosition;
             do
             {
-                nextFoodPosition = this._FoodPosition;
+                nextFoodPosition = this._foodPosition;
                 // Break out if more every direction has been explored and deemed illegal
                 // otherwise perpetual loops may occur
                 if (attemptCount == directions.Count) { break; }
@@ -58,19 +58,19 @@ namespace SnakeGame.Models
                 {
                     case Direction.Left:
                         nextFoodPosition.X -= UIConstants.CellSize;
-                        _oppositeDirection = Direction.Right;
+                        this._oppositeDirection = Direction.Right;
                         break;
                     case Direction.Right:
                         nextFoodPosition.X += UIConstants.CellSize;
-                        _oppositeDirection = Direction.Left;
+                        this._oppositeDirection = Direction.Left;
                         break;
                     case Direction.Down:
                         nextFoodPosition.Y -= UIConstants.CellSize;
-                        _oppositeDirection = Direction.Up;
+                        this._oppositeDirection = Direction.Up;
                         break;
                     case Direction.Up:
                         nextFoodPosition.Y += UIConstants.CellSize;
-                        _oppositeDirection = Direction.Down;
+                        this._oppositeDirection = Direction.Down;
                         break;
                 }
 
@@ -82,16 +82,16 @@ namespace SnakeGame.Models
                                                nextFoodPosition.X >= UIConstants.CanvasWidth || 
                                                nextFoodPosition.Y >= UIConstants.CanvasHeight);
 
-            this._FoodPosition = nextFoodPosition;
+            this._foodPosition = nextFoodPosition;
 
             this.OnModelChanged();
         }
         public bool IsColliding(Point position)
         {
-            return _FoodPosition.Equals(position);
+            return this._foodPosition.Equals(position);
         }
 
-        public Point GetFoodPosition() { return _FoodPosition; }
+        public Point GetFoodPosition() { return this._foodPosition; }
 
     }
 }
