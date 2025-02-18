@@ -55,7 +55,7 @@ namespace SnakeGame.Models
 
                     // Calculate full damage, explosion phase reduces damages in order to simulate a weakening explosion
                     // 26 base damage is completely arbitrary => to be changed for balancing purposes
-                    int totalDamage = (int)(damageModifier * (26 - explosion.Phase));
+                    int totalDamage = (int) Math.Round(damageModifier * (26 - explosion.Phase),0);
 
                     int damage = Math.Max(totalDamage,1);
    
