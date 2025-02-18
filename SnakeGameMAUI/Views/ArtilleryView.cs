@@ -12,16 +12,8 @@ namespace SnakeGameMAUI.Views
 
             foreach (ArtilleryPosition position in positions)
             {
-                if (position.Phase <= 10 && position.Phase % 2 == 0)
-                {
-
-                    canvas.FillColor = Colors.Blue;
-
-                }
-                else if (position.Phase <= 10)
-                {
-                    canvas.FillColor = Colors.DarkBlue;
-                }
+                if (position.Phase <= 10 && position.Phase % 2 == 0) { canvas.FillColor = Colors.Blue; }
+                else if (position.Phase <= 10) { canvas.FillColor = Colors.DarkBlue; }
                 else
                 {
                     canvas.FillColor = position.Phase switch
