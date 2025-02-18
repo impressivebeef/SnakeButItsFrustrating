@@ -1,4 +1,5 @@
 ﻿using SnakeGameMAUI.Models;
+using Color = Microsoft.Maui.Graphics.Color;
 
 namespace SnakeGameMAUI.Views
 {
@@ -12,23 +13,33 @@ namespace SnakeGameMAUI.Views
 
             foreach (ArtilleryPosition position in positions)
             {
-                if (position.Phase <= 10 && position.Phase % 2 == 0) { canvas.FillColor = Colors.Blue; }
-                else if (position.Phase <= 10) { canvas.FillColor = Colors.DarkBlue; }
-                else
-                {
-                    canvas.FillColor = position.Phase switch
-                    {
-                        11 => Colors.Red,
-                        12 => Colors.Orange,
-                        13 => Colors.Yellow,
-                        14 => Colors.Brown,
-                        15 => Colors.Black,
-                        _  => Colors.Transparent
-                    };
-                }
+                canvas.FillColor = GetColor(position.Phase);
+                
                 canvas.FillRectangle((float) position.X, (float) position.Y, UIConstants.CellSize, UIConstants.CellSize);
             }
-           
+        }
+
+        private Color GetColor(int phase)
+        {
+
+            Color color;
+
+            if (phase <= 10 && phase % 2 == 0) { color = Colors.Blue; }
+            else if (phase <= 10) { color = Colors.DarkBlue; }
+            else
+            {
+                color = phase switch
+                {
+                    11 => Colors.Red,
+                    12 => Colors.Orange,
+                    13 => Colors.Yellow,
+                    14 => Colors.Brown,
+                    15 => Colors.Black,
+                    _ => Colors.Transparent
+                };
+            }
+
+            return color;
         }
     }
 }
