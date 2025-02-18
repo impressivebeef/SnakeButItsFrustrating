@@ -1,6 +1,5 @@
-﻿using Microsoft.Maui.Graphics;
-using SnakeGame.Models;
-using SnakeGame.Views;
+﻿using SnakeGameMAUI.Models;
+using SnakeGameMAUI.Views;
 
 namespace SnakeGameMAUI.Controllers
 {

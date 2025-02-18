@@ -2,7 +2,7 @@
 using SnakeGameMAUI.Models;
 using static SnakeGameMAUI.Controllers.GameController;
 
-namespace SnakeGame.Models
+namespace SnakeGameMAUI.Models
 {
     public class FoodModel : Model
     {

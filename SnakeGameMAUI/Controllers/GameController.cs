@@ -1,7 +1,4 @@
 ﻿using System.Diagnostics;
-using Microsoft.Maui.Graphics;
-using SnakeGame.Views;
-using SnakeGameMAUI.Views;
 
 namespace SnakeGameMAUI.Controllers
 {

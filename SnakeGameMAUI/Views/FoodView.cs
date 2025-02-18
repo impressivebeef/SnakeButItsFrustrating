@@ -1,9 +1,9 @@
-﻿using SnakeGame.Models;
-using SnakeGameMAUI;
+﻿using SnakeGameMAUI.Models;
+using View = SnakeGameMAUI.Views.View<SnakeGameMAUI.Models.FoodModel>;
 
-namespace SnakeGame.Views
+namespace SnakeGameMAUI.Views
 {
-    public class FoodView : SnakeGameMAUI.Views.View<FoodModel>
+    public class FoodView : View
     {
         public FoodView(GraphicsView gameCanvas, FoodModel foodModel) : base(gameCanvas, foodModel) { }
 

@@ -1,10 +1,9 @@
-﻿using SnakeGame.Models;
-using SnakeGameMAUI;
-using SnakeGameMAUI.Views;
+﻿using SnakeGameMAUI.Models;
+using View = SnakeGameMAUI.Views.View<SnakeGameMAUI.Models.SnakeModel>;
 
-namespace SnakeGame.Views
+namespace SnakeGameMAUI.Views
 {
-    public class SnakeView : SnakeGameMAUI.Views.View<SnakeModel>
+    public class SnakeView : View
     {
         public SnakeView(GraphicsView gameCanvas, SnakeModel snakeModel) : base(gameCanvas, snakeModel) {  }
 

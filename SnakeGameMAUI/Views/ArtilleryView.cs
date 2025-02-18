@@ -1,9 +1,10 @@
 ﻿using SnakeGameMAUI.Models;
 using Color = Microsoft.Maui.Graphics.Color;
+using View = SnakeGameMAUI.Views.View<SnakeGameMAUI.Models.ArtilleryModel>;
 
 namespace SnakeGameMAUI.Views
 {
-    public class ArtilleryView : View<ArtilleryModel>
+    public class ArtilleryView : View
     {
         public ArtilleryView(GraphicsView gameCanvas, ArtilleryModel artilleryModel) : base(gameCanvas, artilleryModel) { }
 

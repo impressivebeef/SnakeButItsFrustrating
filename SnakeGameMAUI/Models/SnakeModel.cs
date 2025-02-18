@@ -2,7 +2,7 @@
 using SnakeGameMAUI.Models;
 
 
-namespace SnakeGame.Models
+namespace SnakeGameMAUI.Models
 {
     public class SnakeModel : Model
     {
